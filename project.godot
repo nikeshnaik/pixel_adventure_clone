@@ -11,15 +11,11 @@ config_version=5
 [application]
 
 config/name="pixel_adventure"
-run/main_scene="res://scenes/level_1.tscn"
+run/main_scene="res://scenes/levelOne.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
-
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
-
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.129412, 0.121569, 0.188235, 1)
