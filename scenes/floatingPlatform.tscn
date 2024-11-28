@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://xj4wtdumn4os"]
+
+[ext_resource type="Texture2D" uid="uid://c2nsfbfjulfd8" path="res://assets/Traps/Falling Platforms/Off.png" id="1_opppg"]
+[ext_resource type="Texture2D" uid="uid://dl44lyerbtgx1" path="res://assets/Traps/Falling Platforms/On (32x10).png" id="2_a608v"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4uukm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aaflp"]
+size = Vector2(31, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mryhh"]
+atlas = ExtResource("1_opppg")
+region = Rect2(0, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3nmi"]
+atlas = ExtResource("2_a608v")
+region = Rect2(0, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a42r2"]
+atlas = ExtResource("2_a608v")
+region = Rect2(32, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n14cx"]
+atlas = ExtResource("2_a608v")
+region = Rect2(64, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77uo6"]
+atlas = ExtResource("2_a608v")
+region = Rect2(96, 0, 32, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ioif6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mryhh")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3nmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a42r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n14cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77uo6")
+}],
+"loop": true,
+"name": &"on",
+"speed": 10.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_4uukm")
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0.5, -2.5)
+shape = SubResource("RectangleShape2D_aaflp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+sprite_frames = SubResource("SpriteFrames_ioif6")
+animation = &"on"
+autoplay = "on"
+frame_progress = 0.523317
