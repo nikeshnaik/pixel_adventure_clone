@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://xj4wtdumn4os"]
+[gd_scene load_steps=14 format=3 uid="uid://mlbahl1c7cul"]
 
 [ext_resource type="Texture2D" uid="uid://c2nsfbfjulfd8" path="res://assets/Traps/Falling Platforms/Off.png" id="1_opppg"]
 [ext_resource type="Texture2D" uid="uid://dl44lyerbtgx1" path="res://assets/Traps/Falling Platforms/On (32x10).png" id="2_a608v"]
+[ext_resource type="Texture2D" uid="uid://c3q0dis7wgpfj" path="res://assets/Other/Dust Particle.png" id="3_x7xb7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4uukm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aaflp"]
-size = Vector2(31, 5)
+size = Vector2(30, 2.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mryhh"]
 atlas = ExtResource("1_opppg")
@@ -56,18 +57,47 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Curve" id="Curve_fd3jy"]
+min_value = -9.0
+max_value = 9.0
+_data = [Vector2(0.0740103, 3.59686), 0.0, 0.0, 0, 0, Vector2(0.201377, -0.345047), 0.0, 0.0, 0, 0, Vector2(0.234079, 0.674413), 0.0, 0.0, 0, 0, Vector2(0.356282, 3.93668), 0.0, 0.0, 0, 0, Vector2(0.535284, -1.77229), 0.0, 0.0, 0, 0, Vector2(0.669535, 1.04821), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="Gradient" id="Gradient_6voht"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(-1137, 1670)
 physics_material_override = SubResource("PhysicsMaterial_4uukm")
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0.5, -2.5)
+position = Vector2(4, -50.25)
 shape = SubResource("RectangleShape2D_aaflp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+position = Vector2(4.08861, -46.9114)
 sprite_frames = SubResource("SpriteFrames_ioif6")
 animation = &"on"
 autoplay = "on"
-frame_progress = 0.523317
+frame_progress = 0.198843
+
+[node name="dots" type="CPUParticles2D" parent="RigidBody2D/AnimatedSprite2D"]
+position = Vector2(-0.184839, 3.10574)
+amount = 25
+lifetime = 0.3
+speed_scale = 0.4
+randomness = 0.15
+texture = ExtResource("3_x7xb7")
+emission_shape = 5
+emission_points = PackedVector2Array(-6, 5, 6, 5)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+gravity = Vector2(0, 995)
+orbit_velocity_min = -0.3
+orbit_velocity_max = 0.3
+orbit_velocity_curve = SubResource("Curve_fd3jy")
+color = Color(1, 1, 1, 0.678431)
+color_initial_ramp = SubResource("Gradient_6voht")
